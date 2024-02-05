@@ -1,4 +1,5 @@
 public class Konto {
+    public Kunde Owner;
     private double kontostand;
     private String iban;
     
