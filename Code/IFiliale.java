@@ -1,6 +1,4 @@
 public interface IFiliale {
-    public Boolean SendTransfer(Kunde Reciever, String IBAN, double amount);
-    public Boolean GetTransfer(Kunde Reciever, String IBAN, double amount);
-    public void PaySalary(double amount);
+    public Boolean Transfer(Kunde Sender, String from_IBAN, Kunde Reciever, String to_IBAN, double amount);
     public void getAccManagmentFee(double amount);
 }

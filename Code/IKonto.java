@@ -2,6 +2,7 @@ public interface IKonto {
 
     public double getKontostand();
     public String getIban();
-    public void einzahlen(double betrag); 
-    public boolean auszahlen(double betrag);
+    public Boolean einzahlen(double betrag); 
+    public Boolean auszahlen(double betrag);
+    public Boolean Transfer(Kunde Reciever, String to_IBAN, double amount);
 }

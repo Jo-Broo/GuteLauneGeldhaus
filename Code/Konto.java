@@ -19,12 +19,16 @@ public class Konto implements IKonto {
         return iban;
     }
 
-    public void einzahlen(double betrag) 
+    public Boolean einzahlen(double betrag) 
     {
+        if(betrag <= 0){
+            return false;
+        }
         kontostand += betrag;
+        return true;
     }
 
-    public boolean auszahlen(double betrag) 
+    public Boolean auszahlen(double betrag) 
     {
         if(betrag > this.kontostand)
         {
@@ -32,5 +36,9 @@ public class Konto implements IKonto {
         }
         kontostand -= betrag;
         return true;
+    }
+
+    public Boolean Transfer(Kunde Reciever, String to_IBAN, double amount){
+        return this.Owner.Bank.Transfer(this.Owner, this.iban, Reciever, to_IBAN, amount);
     }
 }

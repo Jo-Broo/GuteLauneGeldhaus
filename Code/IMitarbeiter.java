@@ -1,4 +1,4 @@
 public interface IMitarbeiter {
-    public Boolean OpenAccount();
+    public Boolean OpenAccount(Kunde Applicant);
     public Boolean CloseAccount(Konto Account);
 }
