@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Filiale {
+public class Filiale implements IFiliale{
     public String Name;
     public String Adress;
+    public String BIC;
     public List<Mitarbeiter> Employees;
     public List<Kunde> Customers;
 

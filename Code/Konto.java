@@ -1,4 +1,4 @@
-public class Konto {
+public class Konto implements IKonto {
     public Kunde Owner;
     private double kontostand;
     private String iban;
