@@ -3,9 +3,10 @@ public class Konto implements IKonto {
     private double kontostand;
     private String iban;
     
-    public Konto(String iban) 
+    public Konto(String iban, Kunde owner) 
     {
         this.iban = iban;
+        this.Owner = owner;
         kontostand = 0;
     }
 
@@ -19,7 +20,7 @@ public class Konto implements IKonto {
         return iban;
     }
 
-    public Boolean einzahlen(double betrag) 
+    public Boolean Deposit(double betrag) 
     {
         if(betrag <= 0){
             return false;
@@ -28,7 +29,7 @@ public class Konto implements IKonto {
         return true;
     }
 
-    public Boolean auszahlen(double betrag) 
+    public Boolean Withdraw(double betrag) 
     {
         if(betrag > this.kontostand)
         {

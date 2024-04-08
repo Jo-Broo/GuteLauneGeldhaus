@@ -15,13 +15,8 @@ public class Kunde extends Person implements IKunde{
         this.Accounts = new ArrayList<Konto>(maxAccounts);
     }
 
-    public Konto OpenAccount(){
-        if(this.Consultant.OpenAccount(this)){
-            Konto neu = new Konto("");
-            neu.Owner = this;
-            return neu; // funktion schreiben zum IBAN generieren 
-        }
-        return null;
+    public void OpenAccount(){
+        this.Consultant.OpenAccount(this);
     }
 
     public Boolean CloseAccount(Konto Account)
@@ -46,7 +41,7 @@ public class Kunde extends Person implements IKunde{
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == IBAN){
-                return Account.einzahlen(amount);
+                return Account.Deposit(amount);
             }
         }
         return false;
@@ -55,7 +50,7 @@ public class Kunde extends Person implements IKunde{
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == IBAN){
-                return Account.auszahlen(amount);
+                return Account.Withdraw(amount);
             }
         }
         return false;
