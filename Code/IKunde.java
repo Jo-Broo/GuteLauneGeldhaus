@@ -1,5 +1,5 @@
 public interface IKunde {
-    public void OpenAccount();
+    public Boolean OpenAccount();
     public Boolean CloseAccount(Konto Account);
     public double getBalance(String IBAN);
     public Boolean Deposit(String IBAN, double amount);

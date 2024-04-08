@@ -4,7 +4,7 @@ import java.util.List;
 public class Kunde extends Person implements IKunde{
     public List<Konto> Accounts;
     public int ID;
-    public int maxAccounts = 5;
+    public int maxAccounts = 4;
     public Filiale Bank;
     public Mitarbeiter Consultant;
 
@@ -15,8 +15,8 @@ public class Kunde extends Person implements IKunde{
         this.Accounts = new ArrayList<Konto>(maxAccounts);
     }
 
-    public void OpenAccount(){
-        this.Consultant.OpenAccount(this);
+    public Boolean OpenAccount(){
+        return this.Consultant.OpenAccount(this);
     }
 
     public Boolean CloseAccount(Konto Account)
@@ -59,7 +59,12 @@ public class Kunde extends Person implements IKunde{
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == from_IBAN){
-                return Account.Transfer(Reciever, to_IBAN, amount);
+                if(Account.getKontostand() > amount){
+                    return Account.Transfer(Reciever, to_IBAN, amount);
+                }
+                else{
+                    return false;
+                }
             }
         }
         return false;

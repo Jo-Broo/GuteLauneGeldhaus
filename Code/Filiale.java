@@ -24,7 +24,7 @@ public class Filiale implements IFiliale{
         Kunde neuKunde = new Kunde(person.FirstName, person.LastName, person.Age);
         neuKunde.Bank = this;
         this.Customers.add(neuKunde);
-        Mitarbeiter mitarbeiter = this.Employees.get(this.random.nextInt(this.Employees.size()));
+        Mitarbeiter mitarbeiter = this.Employees.get(Math.abs(this.random.nextInt(this.Employees.size())));
         mitarbeiter.Bank = this;
         neuKunde.Consultant = mitarbeiter;
         mitarbeiter.Applicants.add(neuKunde);

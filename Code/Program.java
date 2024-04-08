@@ -73,7 +73,7 @@ public class Program {
 
         // === Überweisen
         System.out.println("Niklas möchte Florian 86.36 überweisen.");
-        Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 86.36);
+        Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 186.36);
         System.out.println("Niklas hat jetzt " + Niklas.Accounts.get(0).getKontostand() + " auf seinem Konto.");
         System.out.println("Florian hat jetzt " + Florian.Accounts.get(0).getKontostand() + " auf seinem Konto.");
         // ===
