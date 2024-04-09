@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kunde extends Person implements IKunde{
+public class Kunde extends Person{
     public List<Konto> Accounts;
     public int ID;
     public int maxAccounts = 4;
@@ -30,7 +30,7 @@ public class Kunde extends Person implements IKunde{
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == IBAN){
-                return Account.getKontostand();
+                return Account.getBalance();
             }
         }
         // hier muss noch eine andere Lösung gefunden werden sowas wie einen out-Parameter gibts leider nicht
@@ -59,7 +59,7 @@ public class Kunde extends Person implements IKunde{
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == from_IBAN){
-                if(Account.getKontostand() > amount){
+                if(Account.getBalance() > amount){
                     return Account.Transfer(Reciever, to_IBAN, amount);
                 }
                 else{

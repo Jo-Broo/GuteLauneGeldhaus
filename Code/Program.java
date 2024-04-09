@@ -1,12 +1,9 @@
-import java.io.Console;
-
 public class Program {
     public static void main(String[] args){
         Filiale Bank = new Filiale("null", "null");
 
-        Person person = new Person("null", "null", 0);
+        Bank.AddEmployee(new Person("Jonas", "Wolf", 20));
 
-        Bank.AddEmployee(person);
         Mitarbeiter Jonas = Bank.Employees.get(0);
         Bank.AddEmployee(new Person("Cornelius", "Mueller", 22));
         Mitarbeiter Cornelius = Bank.Employees.get(1);
@@ -37,9 +34,16 @@ public class Program {
         // Bank.Customers.add(Niklas);
         // Bank.Customers.add(Florian);
 
-        System.out.println("== Kundenbeziehung zwischen Jonas und Niklas wird aufgebaut ==");
-        System.out.println("1. Kunde von Jonas: " + Jonas.Applicants.get(0).FirstName + " " + Jonas.Applicants.get(0).LastName);
-        System.out.println("Bearbeiter von Niklas: " + Niklas.Consultant.FirstName + " " + Niklas.Consultant.LastName);
+        System.out.println("=== Mitarbeiter - Kundenbeziehungen ===");
+        for (Mitarbeiter mitarbeiter : Bank.Employees) {
+            System.out.println("Zu betreuende Kunden von " + mitarbeiter.FirstName + " " + mitarbeiter.LastName + ":");
+            for (Kunde kunde : mitarbeiter.Applicants) {
+                System.out.println(kunde.FirstName + " " + kunde.LastName);
+            }
+        }
+        // System.out.println("== Kundenbeziehung zwischen Jonas und Niklas wird aufgebaut ==");
+        // System.out.println("1. Kunde von Jonas: " + Jonas.Applicants.get(0).FirstName + " " + Jonas.Applicants.get(0).LastName);
+        // System.out.println("Bearbeiter von Niklas: " + Niklas.Consultant.FirstName + " " + Niklas.Consultant.LastName);
         // ===
         
         // === Account erstellung
@@ -61,21 +65,21 @@ public class Program {
 
         // === Account Management
         System.out.println("=== === === === === === ===");
-        System.out.println("Niklas hat auf seinem 1. Konto einen Kontostand von: " + Niklas.Accounts.get(0).getKontostand());
+        System.out.println("Niklas hat auf seinem 1. Konto einen Kontostand von: " + Niklas.Accounts.get(0).getBalance());
         System.out.println("Niklas zahlt 100 ein.");
         Niklas.Accounts.get(0).Deposit(100);
-        System.out.println("Niklas hat auf seinem 1. Konto jetzt einen Kontostand von: " + Niklas.Accounts.get(0).getKontostand());
+        System.out.println("Niklas hat auf seinem 1. Konto jetzt einen Kontostand von: " + Niklas.Accounts.get(0).getBalance());
         System.out.println("Niklas hebt er 12.64 ab");
         Niklas.Accounts.get(0).Withdraw(12.64);
-        System.out.println("Niklas hat auf seinem 1. Konto jetzt einen Kontostand von: " + Niklas.Accounts.get(0).getKontostand());
+        System.out.println("Niklas hat auf seinem 1. Konto jetzt einen Kontostand von: " + Niklas.Accounts.get(0).getBalance());
         System.out.println("=== === === === === === ===");
         // ===
 
         // === Überweisen
         System.out.println("Niklas möchte Florian 86.36 überweisen.");
         Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 186.36);
-        System.out.println("Niklas hat jetzt " + Niklas.Accounts.get(0).getKontostand() + " auf seinem Konto.");
-        System.out.println("Florian hat jetzt " + Florian.Accounts.get(0).getKontostand() + " auf seinem Konto.");
+        System.out.println("Niklas hat jetzt " + Niklas.Accounts.get(0).getBalance() + " auf seinem Konto.");
+        System.out.println("Florian hat jetzt " + Florian.Accounts.get(0).getBalance() + " auf seinem Konto.");
         // ===
 
         // === Account löschen

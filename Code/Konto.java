@@ -1,23 +1,23 @@
-public class Konto implements IKonto {
+public class Konto{
     public Kunde Owner;
-    private double kontostand;
-    private String iban;
+    private double Balance;
+    private String Iban;
     
     public Konto(String iban, Kunde owner) 
     {
-        this.iban = iban;
+        this.Iban = iban;
         this.Owner = owner;
-        kontostand = 0;
+        Balance = 0;
     }
 
-    public double getKontostand() 
+    public double getBalance() 
     {
-        return kontostand;
+        return Balance;
     }
     
     public String getIban() 
     {
-        return iban;
+        return Iban;
     }
 
     public Boolean Deposit(double betrag) 
@@ -25,21 +25,21 @@ public class Konto implements IKonto {
         if(betrag <= 0){
             return false;
         }
-        kontostand += betrag;
+        Balance += betrag;
         return true;
     }
 
     public Boolean Withdraw(double betrag) 
     {
-        if(betrag > this.kontostand)
+        if(betrag > this.Balance)
         {
             return false;
         }
-        kontostand -= betrag;
+        Balance -= betrag;
         return true;
     }
 
     public Boolean Transfer(Kunde Reciever, String to_IBAN, double amount){
-        return this.Owner.Bank.Transfer(this.Owner, this.iban, Reciever, to_IBAN, amount);
+        return this.Owner.Bank.Transfer(this.Owner, this.Iban, Reciever, to_IBAN, amount);
     }
 }

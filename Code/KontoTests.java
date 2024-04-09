@@ -1,9 +1,3 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import javax.swing.Box.Filler;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -69,7 +63,7 @@ public class KontoTests {
         // Act
         // Assert
         Assert.assertTrue(kunde.Accounts.get(0).Deposit(13.67));
-        Assert.assertTrue(kunde.Accounts.get(0).getKontostand() == 13.67);
+        Assert.assertTrue(kunde.Accounts.get(0).getBalance() == 13.67);
     }
 
     @Test
@@ -84,7 +78,7 @@ public class KontoTests {
         // Act
         // Assert
         Assert.assertTrue(!kunde.Accounts.get(0).Deposit(-13.24));
-        Assert.assertTrue(kunde.Accounts.get(0).getKontostand() == 0.0);
+        Assert.assertTrue(kunde.Accounts.get(0).getBalance() == 0.0);
     }
 
     @Test
@@ -100,7 +94,7 @@ public class KontoTests {
         // Act
         // Assert
         Assert.assertTrue(kunde.Accounts.get(0).Withdraw(67.31));
-        Assert.assertTrue(kunde.Accounts.get(0).getKontostand() == 32.69);
+        Assert.assertTrue(kunde.Accounts.get(0).getBalance() == 32.69);
     }
 
     @Test
@@ -115,7 +109,7 @@ public class KontoTests {
         // Act
         // Assert
         Assert.assertTrue(!kunde.Accounts.get(0).Withdraw(10));
-        Assert.assertTrue(kunde.Accounts.get(0).getKontostand() == 0.00);
+        Assert.assertTrue(kunde.Accounts.get(0).getBalance() == 0.00);
     }
 
     @Test
@@ -135,7 +129,7 @@ public class KontoTests {
 
         // Assert
         Assert.assertTrue(Max.Transfer(Max.Accounts.get(0).getIban(), Leon, Leon.Accounts.get(0).getIban(), 13));
-        Assert.assertTrue(Leon.Accounts.get(0).getKontostand() == 13.00);
+        Assert.assertTrue(Leon.Accounts.get(0).getBalance() == 13.00);
     }
 
     @Test
@@ -155,6 +149,6 @@ public class KontoTests {
 
         // Assert
         Assert.assertTrue(!Max.Transfer(Max.Accounts.get(0).getIban(), Leon, Leon.Accounts.get(0).getIban(), 14));
-        Assert.assertTrue(Leon.Accounts.get(0).getKontostand() == 0.00);
+        Assert.assertTrue(Leon.Accounts.get(0).getBalance() == 0.00);
     }
 }

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Filiale implements IFiliale{
+public class Filiale{
     public String Name;
     public String Adress;
     public String BIC;

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mitarbeiter extends Person implements IMitarbeiter {
+public class Mitarbeiter extends Person{
     public Filiale Bank;
     public int ID;
     public List<Kunde> Applicants;
@@ -27,7 +27,7 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
     }
 
     public Boolean CloseAccount(Konto Account){
-        if(Account.getKontostand() > 0.00 || Account.getKontostand() < 0.00){
+        if(Account.getBalance() > 0.00 || Account.getBalance() < 0.00){
             return false;
         }
         return true;
