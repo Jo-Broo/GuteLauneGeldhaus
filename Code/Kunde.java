@@ -15,11 +15,11 @@ public class Kunde extends Person{
         this.Accounts = new ArrayList<Konto>(maxAccounts);
     }
 
-    public Boolean OpenAccount(){
+    public boolean OpenAccount(){
         return this.Consultant.OpenAccount(this);
     }
 
-    public Boolean CloseAccount(Konto Account)
+    public boolean CloseAccount(Konto Account)
     {
         if(this.Consultant.CloseAccount(Account)){
             return this.Accounts.remove(Account);
@@ -37,7 +37,7 @@ public class Kunde extends Person{
         // vlt über eine objekt rückgabe des Statuses 
         return 0.00;
     }
-    public Boolean Deposit(String IBAN, double amount)
+    public boolean Deposit(String IBAN, double amount)
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == IBAN){
@@ -46,7 +46,7 @@ public class Kunde extends Person{
         }
         return false;
     }
-    public Boolean Withdraw(String IBAN, double amount)
+    public boolean Withdraw(String IBAN, double amount)
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == IBAN){
@@ -55,7 +55,7 @@ public class Kunde extends Person{
         }
         return false;
     }
-    public Boolean Transfer(String from_IBAN, Kunde Reciever, String to_IBAN, double amount)
+    public boolean Transfer(String from_IBAN, Kunde Reciever, String to_IBAN, double amount)
     {
         for (Konto Account : this.Accounts) {
             if(Account.getIban() == from_IBAN){

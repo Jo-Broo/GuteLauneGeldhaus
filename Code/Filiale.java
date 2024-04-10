@@ -34,7 +34,7 @@ public class Filiale{
         this.Employees.add(new Mitarbeiter(person.FirstName, person.LastName, person.Age));
     }
 
-    public Boolean Transfer(Kunde Sender, String from_IBAN, Kunde Reciever, String to_IBAN, double amount)
+    public boolean Transfer(Kunde Sender, String from_IBAN, Kunde Reciever, String to_IBAN, double amount)
     {
         Konto from = null;
         Konto to = null;

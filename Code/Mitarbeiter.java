@@ -16,7 +16,7 @@ public class Mitarbeiter extends Person{
     //     return (Applicant.Age >= 18 && Applicant.Accounts.size() <= Applicant.maxAccounts);
     // }
 
-    public Boolean OpenAccount(Kunde Applicant){
+    public boolean OpenAccount(Kunde Applicant){
         if (Applicant.Age >= 18 && Applicant.Accounts.size() <= Applicant.maxAccounts){
             Applicant.Accounts.add(new Konto(this.Bank.GenerateIBAN(),Applicant));
             return true;
@@ -26,7 +26,7 @@ public class Mitarbeiter extends Person{
         }
     }
 
-    public Boolean CloseAccount(Konto Account){
+    public boolean CloseAccount(Konto Account){
         if(Account.getBalance() > 0.00 || Account.getBalance() < 0.00){
             return false;
         }

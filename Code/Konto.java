@@ -20,7 +20,7 @@ public class Konto{
         return Iban;
     }
 
-    public Boolean Deposit(double betrag) 
+    public boolean Deposit(double betrag) 
     {
         if(betrag <= 0){
             return false;
@@ -29,7 +29,7 @@ public class Konto{
         return true;
     }
 
-    public Boolean Withdraw(double betrag) 
+    public boolean Withdraw(double betrag) 
     {
         if(betrag > this.Balance)
         {
@@ -39,7 +39,7 @@ public class Konto{
         return true;
     }
 
-    public Boolean Transfer(Kunde Reciever, String to_IBAN, double amount){
+    public boolean Transfer(Kunde Reciever, String to_IBAN, double amount){
         return this.Owner.Bank.Transfer(this.Owner, this.Iban, Reciever, to_IBAN, amount);
     }
 }
