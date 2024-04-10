@@ -61,6 +61,7 @@ public class Program {
 
         System.out.println("Niklas überweist Florian 86.36.");
         Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 86.36);
+        //Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, "DE4712345678123412", 86.36);
         
         System.out.println("Niklas Kontostand des 1. Kontos: " + Niklas.Accounts.get(0).getBalance());
         System.out.println("Florian Kontostand des 1. Kontos: " + Florian.Accounts.get(0).getBalance());
@@ -76,7 +77,7 @@ public class Program {
             System.out.println("Der Vorgang war nicht erfolgreich.");
         }
         System.out.println("Niklas hebt den verbleibenden Betrag ab und versucht es erneut.");
-        Niklas.Accounts.get(0).Withdraw(1);
+        Niklas.Accounts.get(0).Withdraw(Niklas.Accounts.get(0).getBalance());
         if(Niklas.CloseAccount(Niklas.Accounts.get(0))){
             System.out.println("Der Vorgang war erfolgreich.");
         }

@@ -5,7 +5,6 @@ import java.util.Random;
 public class Filiale{
     public String Name;
     public String Adress;
-    public String BIC;
     public List<Mitarbeiter> Employees;
     public List<Kunde> Customers;
     private double AccManagmentFee = 0.00;
@@ -40,24 +39,36 @@ public class Filiale{
         Konto to = null;
 
         if(this.Customers.contains(Reciever)){
-
-            // Die beiden Konten werden ermittelt wenn am ende eines nicht gefunden wurde wird die Überweisung abgebrochen
-            // !wichtig! die bearbeitung der Kontostände wird erst am Ende vorgenommen
-
+            // Senderkonto wird gesucht
             for (Konto Account : Sender.Accounts) {
                 if(Account.getIban() == from_IBAN){
+                    System.out.println("[Senderkonto gefunden]");
                     from = Account;
                 }
             }
+            // wird das nicht gefunden dann wird der vorgang abgebrochen
+            if(from == null){
+                System.out.println("[Senderkonto konnte nicht gefunden werden, Vorgang wird abgebrochen]");
+                return false;
+            }
+
+            // Empfängerkonto wird gesucht
             for (Konto Account : Reciever.Accounts) {
                 if(Account.getIban() == to_IBAN){
+                    System.out.println("[Empfängerkonto gefunden]");
                     to = Account;
                 }
             }
+            // wird das nicht gefunden dann wird der vorgang abgebrochen
+            if(to == null){
+                System.out.println("[Empfängerkonto konnte nicht gefunden werden, Vorgang wird abgebrochen]");
+                return false;
+            }
 
-            if(from == null || to == null){return false;}
+            System.out.print("[Transfer wird gestartet...");
             from.Withdraw(amount);
             to.Deposit(amount);
+            System.out.println("Vorgang abgeschlossen]");
             
             return true;
         }

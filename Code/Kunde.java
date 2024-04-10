@@ -16,11 +16,17 @@ public class Kunde extends Person{
     }
 
     public boolean OpenAccount(){
+        if(this.Consultant == null){
+            return false;
+        }
         return this.Consultant.OpenAccount(this);
     }
 
     public boolean CloseAccount(Konto Account)
     {
+        if(this.Consultant == null){
+            return false;
+        }
         if(this.Consultant.CloseAccount(Account)){
             return this.Accounts.remove(Account);
         }
@@ -33,8 +39,8 @@ public class Kunde extends Person{
                 return Account.getBalance();
             }
         }
-        // hier muss noch eine andere Lösung gefunden werden sowas wie einen out-Parameter gibts leider nicht
-        // vlt über eine objekt rückgabe des Statuses 
+        
+        // Standardrückgabewert wenn kein Konto mit der entsprechenden IBAN gefunden wurde
         return 0.00;
     }
     public boolean Deposit(String IBAN, double amount)
