@@ -1,38 +1,22 @@
 public class Program {
     public static void main(String[] args){
-        Filiale Bank = new Filiale("null", "null");
+        //initialisierung
+        Filiale Bank = new Filiale("GuteLauneGeldhaus", "Talstraße 69, 71069 Sindelfingen");
 
-        Bank.AddEmployee(new Person("Jonas", "Wolf", 20));
+        System.out.println("=== Vorführprogramm der " + Bank.Name + " Bank ===");
 
-        Mitarbeiter Jonas = Bank.Employees.get(0);
-        Bank.AddEmployee(new Person("Cornelius", "Mueller", 22));
-        Mitarbeiter Cornelius = Bank.Employees.get(1);
+        Person p1 = new Person("Jonas", "Wolf", 20);
+        Bank.AddEmployee(p1);
+        Mitarbeiter Jonas = getMitarbeiter(Bank, p1.FirstName, p1.LastName);
+
+        Person p2 = new Person("Cornelius", "Mueller", 22);
+        Bank.AddEmployee(p2);
+        Mitarbeiter Cornelius = getMitarbeiter(Bank, p2.FirstName, p2.LastName);
 
         Bank.AddCustomer(new Person("Niklas", "Soika", 21));
         Kunde Niklas = Bank.Customers.get(0);
         Bank.AddCustomer(new Person("Floarian","Diehle", 20));
         Kunde Florian = Bank.Customers.get(1);
-
-        // Generell muss man noch das Fehler Management machen gerade gibts halt nur unhandeld exceptions
-
-        // Diese zwei Zeilen kann man noch in eine logische Methode zusammenfassen vlt. als Setter beim Mitarbeiter
-        // Das der Mitarbeiter sowas hat wie MItarbeiter.getNewKunde()
-        // und da wird beim Kunden direkt der Mitarbeiter gesetzt
-        // === Mitarbeiter-Kunden beziehung
-        // Niklas.Consultant = Jonas;
-        // Jonas.Applicants.add(Niklas);
-        // Jonas.Bank = Bank;
-        // Niklas.Bank = Bank;
-
-        // Florian.Consultant = Cornelius;
-        // Cornelius.Applicants.add(Florian);
-        // Cornelius.Bank = Bank;
-        // Florian.Bank = Bank;
-
-        // Bank.Employees.add(Cornelius);
-        // Bank.Employees.add(Jonas);
-        // Bank.Customers.add(Niklas);
-        // Bank.Customers.add(Florian);
 
         System.out.println("=== Mitarbeiter - Kundenbeziehungen ===");
         for (Mitarbeiter mitarbeiter : Bank.Employees) {
@@ -41,13 +25,10 @@ public class Program {
                 System.out.println(kunde.FirstName + " " + kunde.LastName);
             }
         }
-        // System.out.println("== Kundenbeziehung zwischen Jonas und Niklas wird aufgebaut ==");
-        // System.out.println("1. Kunde von Jonas: " + Jonas.Applicants.get(0).FirstName + " " + Jonas.Applicants.get(0).LastName);
-        // System.out.println("Bearbeiter von Niklas: " + Niklas.Consultant.FirstName + " " + Niklas.Consultant.LastName);
+        System.out.println("=== === === === === === ===");
         // ===
         
         // === Account erstellung
-        System.out.println("=== === === === === === ===");
         System.out.println("Niklas hat gerade " + Niklas.Accounts.size() + " Konten.");
         System.out.println("Niklas beantragt ein Konto.");
         Niklas.OpenAccount();
@@ -64,7 +45,6 @@ public class Program {
         // === 
 
         // === Account Management
-        System.out.println("=== === === === === === ===");
         System.out.println("Niklas hat auf seinem 1. Konto einen Kontostand von: " + Niklas.Accounts.get(0).getBalance());
         System.out.println("Niklas zahlt 100 ein.");
         Niklas.Accounts.get(0).Deposit(100);
@@ -76,15 +56,19 @@ public class Program {
         // ===
 
         // === Überweisen
-        System.out.println("Niklas möchte Florian 86.36 überweisen.");
-        Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 186.36);
-        System.out.println("Niklas hat jetzt " + Niklas.Accounts.get(0).getBalance() + " auf seinem Konto.");
-        System.out.println("Florian hat jetzt " + Florian.Accounts.get(0).getBalance() + " auf seinem Konto.");
+        System.out.println("Niklas Kontostand des 1. Kontos: " + Niklas.Accounts.get(0).getBalance());
+        System.out.println("Florian Kontostand des 1. Kontos: " + Florian.Accounts.get(0).getBalance());
+
+        System.out.println("Niklas überweist Florian 86.36.");
+        Niklas.Transfer(Niklas.Accounts.get(0).getIban(), Florian, Florian.Accounts.get(0).getIban(), 86.36);
+        
+        System.out.println("Niklas Kontostand des 1. Kontos: " + Niklas.Accounts.get(0).getBalance());
+        System.out.println("Florian Kontostand des 1. Kontos: " + Florian.Accounts.get(0).getBalance());
+        System.out.println("=== === === === === === ===");
         // ===
 
         // === Account löschen
-        System.out.println("=== === === === === === ===");
-        System.out.println("Niklas möchte jetzt sein Konto löschen.");
+        System.out.println("Niklas möchte jetzt sein 1. Konto löschen.");
         if(Niklas.CloseAccount(Niklas.Accounts.get(0))){
             System.out.println("Der Vorgang war erfolgreich.");
         }
@@ -100,6 +84,15 @@ public class Program {
             System.out.println("Der Vorgang war nicht erfolgreich.");
         }
         System.out.println("=== === === === === === ===");
+        System.out.println("=== Ende des Programms ===");
+        System.out.println("Besuchen sie uns gern vor Ort in der " + Bank.Adress);
         // ===
+    }
+
+    public static Mitarbeiter getMitarbeiter(Filiale Bank, String fName, String lName) {
+        return Bank.Employees.stream()
+        .filter(employee -> employee.FirstName.toLowerCase() == fName.toLowerCase() && employee.LastName.toLowerCase() == lName.toLowerCase())
+        .findFirst()
+        .orElse(null);
     }
 }
