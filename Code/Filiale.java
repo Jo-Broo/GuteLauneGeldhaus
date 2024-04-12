@@ -27,6 +27,7 @@ public class Filiale{
         mitarbeiter.Bank = this;
         neuKunde.Consultant = mitarbeiter;
         mitarbeiter.Applicants.add(neuKunde);
+        neuKunde.OpenAccount();
     }
 
     public void AddEmployee(Person person){

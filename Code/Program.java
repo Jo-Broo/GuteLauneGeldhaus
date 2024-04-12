@@ -29,18 +29,13 @@ public class Program {
         // ===
         
         // === Account erstellung
-        System.out.println("Niklas hat gerade " + Niklas.Accounts.size() + " Konten.");
-        System.out.println("Niklas beantragt ein Konto.");
+        System.out.println("Niklas hat gerade " + Niklas.Accounts.size() + " Konto.");
+        System.out.println("Niklas beantragt ein zweites Konto.");
         Niklas.OpenAccount();
         System.out.println("Niklas hat jetzt " + Niklas.Accounts.size() + " Konten.");
-        System.out.println("Die IBAN lautet: " + Niklas.Accounts.get(0).getIban());
-        System.out.println("=== === === === === === ===");
-
-        System.out.println("Florian hat gerade " + Florian.Accounts.size() + " Konten.");
-        System.out.println("Florian beantragt ein Konto.");
-        Florian.OpenAccount();
-        System.out.println("Florian hat jetzt " + Florian.Accounts.size() + " Konten.");
-        System.out.println("Die IBAN lautet: " + Florian.Accounts.get(0).getIban());
+        for(int i=0;i<Niklas.Accounts.size();i++){
+            System.out.println((i+1) + ". Konto| " + Niklas.Accounts.get(i).getIban());
+        }
         System.out.println("=== === === === === === ===");
         // === 
 
