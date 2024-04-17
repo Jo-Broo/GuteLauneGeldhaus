@@ -15,7 +15,7 @@ public class Program {
 
         Bank.AddCustomer(new Person("Niklas", "Soika", 21));
         Kunde Niklas = Bank.Customers.get(0);
-        Bank.AddCustomer(new Person("Floarian","Diehle", 20));
+        Bank.AddCustomer(new Person("Florian","Diehle", 20));
         Kunde Florian = Bank.Customers.get(1);
 
         System.out.println("=== Mitarbeiter - Kundenbeziehungen ===");
